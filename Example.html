@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poor mans React</title>
+    <link rel="stylesheet" href="Example.css"/>
+    <script src="pmr.js"></script>
+    <script defer>
+        const [getTodos,setTodos]=useState([])
+        const add=(e)=>{
+            e.preventDefault()
+            let data=new FormData(e.target)
+            setTodos([...getTodos(),data.get('todo')])
+
+        }
+       
+        
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Todos</h1>
+        <div class="todos">
+            #~ getTodos().map((t,i)=>`
+                <div class="todo">${t}
+                <button onclick="setTodos(getTodos().filter((a,j)=>${i}!=j))">X</button>
+                </div>
+
+            `).join("") ~#
+        </div>
+        <form onsubmit="add(event)">
+            <label for="todo">Add Todo</label><br>
+            <div class="formctrl">
+                <input class="input" type="text" name="todo" placeholder="Enter Todo"/>
+                <input class="submit" type="submit" value="Add"/>
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>
